@@ -28,7 +28,7 @@ httpJson.interceptors.response.use(
     alert(message);
     console.log(message, error.response);
 
-    //.thenを無効化
+    // .thenを無効化
     return Promise.reject(error);
   }
 );
