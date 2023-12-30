@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import InputText from "@/components/inputs/InputText.vue";
 import { mdiAccount } from "@mdi/js";
 
 const textValue = ref<string | null>(null);
@@ -8,9 +7,9 @@ const textValue = ref<string | null>(null);
 
 <template>
   Top
-  <InputText v-model="textValue"></InputText>
+  <v-text-field v-model="textValue"></v-text-field>
   {{ textValue }}
-  <SvgIcon type="mdi" :path="mdiAccount"></SvgIcon>
+  <v-icon :icon="mdiAccount"></v-icon>
 </template>
 
 <style scoped></style>

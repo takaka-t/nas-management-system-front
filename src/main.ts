@@ -1,22 +1,33 @@
-import App from "./App.vue";
-import router from "./router";
-
 import { createApp } from "vue";
-import { createPinia } from "pinia";
-import { createPersistedState } from "pinia-plugin-persistedstate";
-import { errorHandler } from "@/commons/errorHandler";
-import SvgIcon from "@jamescoyle/vue-icon";
-
+import App from "./App.vue";
 const app = createApp(App);
 
+import router from "./router";
+app.use(router);
+
+import "vuetify/styles";
+import { createVuetify } from "vuetify";
+import * as components from "vuetify/components";
+import * as directives from "vuetify/directives";
+import { aliases, mdi } from "vuetify/iconsets/mdi-svg";
+const vuetify = createVuetify({
+  components,
+  directives,
+  icons: {
+    defaultSet: "mdi",
+    aliases,
+    sets: { mdi },
+  },
+});
+app.use(vuetify);
+
+import { createPinia } from "pinia";
+import { createPersistedState } from "pinia-plugin-persistedstate";
 const pinia = createPinia();
 pinia.use(createPersistedState());
 app.use(pinia);
 
-app.use(router);
-
+import { errorHandler } from "@/commons/errorHandler";
 app.use(errorHandler);
-
-app.component("SvgIcon", SvgIcon);
 
 app.mount("#app");
